@@ -16,6 +16,9 @@ def scraper(data):
     x = soup.find("i", { "class" : "fa fa-map-marker"})
     if x is not None:
         print("Location    : " + list(x.parent.children)[1][1 : ])
+    x = soup.find("i", { "class" : "fa fa-building-o "})
+    if x is not None:
+        print("Institution : " + x.parent.text[14 :])
     x = soup.find_all("i", {"class" : "fa fa-trophy"})
     p = None
     for s in x:
