@@ -1,17 +1,17 @@
-import urllib.request
+import requests
 import re
 
-print("Enter page name")
-
 url = "https://en.wikipedia.org/wiki/"
-name = input()
-name = "_".join(name.title().split())
-url += name
+
+print("Enter Page Name")
+page = input()
+page = "_".join(page.title().split())
+url += page
 
 try:
-    data = urllib.request.urlopen(url).read().decode("utf-8")
-    m = re.search("last edited on ", data).start()
-    print(data[m : m + 50].split('<')[0])
+    data = requests.get(url).text
+    info = re.search("last edited on ", data).start()
+    print(data[info : info + 50].split('<')[0])
 
 except:
     print("Page not found")
